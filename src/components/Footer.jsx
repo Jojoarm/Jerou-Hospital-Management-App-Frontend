@@ -3,15 +3,13 @@ import Logo from './Logo';
 const Footer = () => {
   return (
     <div className="md:mx-10">
-      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
+      <hr />
+      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-20 text-sm px-5">
         <div>
           <Logo />
           <p className="w-full md:w-2/3 text-gray-600 leading-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae
-            vestibulum risus. Quisque vehicula enim eu mi laoreet finibus.
-            Mauris at nulla ac ipsum volutpat blandit consectetur nec urna.
-            There is no one who loves pain itself, who seeks after it and wants
-            to have it, simply because it is pain...
+            We treat, God heals! There is no one who loves pain itself, who
+            seeks after it and wants to have it, simply because it is pain...
           </p>
         </div>
 

@@ -1,5 +1,4 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import Jerou_logo from '../assets/Jerou_logo.jpg';
 import { useState } from 'react';
 import {
   AlarmClockCheck,
@@ -18,7 +17,7 @@ const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
 
   return (
-    <div className="flex justify-between items-center px-6 text-sm border-b border-gray-400">
+    <div className="fixed top-0 left-0 right-0 z-20 flex justify-between items-center px-6 text-sm bg-white border-b border-gray-400">
       <Logo />
       <div>
         <ul className="hidden md:flex items-start md:gap-1 lg:gap-5 font-medium md:text-base lg:text-xl ">
@@ -52,7 +51,7 @@ const Header = () => {
           onClick={() => navigate('/login')}
           className="bg-[#5f6FFF] text-white px-8 py-3 rounded-full font-light hidden md:block"
         >
-          Create Account
+          Login
         </button>
         {!mobileMenu ? (
           <Menu

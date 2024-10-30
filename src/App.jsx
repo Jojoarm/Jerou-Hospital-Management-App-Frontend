@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <div className="mx-4 sm:mx-[1%]">
+    <div>
       <ToastContainer />
       <Header />
       <Routes>
