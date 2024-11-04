@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   AlarmClockCheck,
   Contact,
@@ -8,13 +8,27 @@ import {
   Menu,
   UsersRound,
   X,
+  ArrowDown,
+  UserPen,
+  Projector,
+  LogOut,
+  LogIn,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
+import { AppContext } from '../context/AppContext.jsx';
 
 const Header = () => {
   const navigate = useNavigate();
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [menu, setMenu] = useState(false);
+
+  const { user, token, setToken } = useContext(AppContext);
+
+  const logout = () => {
+    setToken(false);
+    localStorage.removeItem('token');
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-20 flex justify-between items-center px-6 text-sm bg-white border-b border-gray-400">
@@ -46,13 +60,54 @@ const Header = () => {
           </NavLink>
         </ul>
       </div>
-      <div className="flex-none">
-        <button
-          onClick={() => navigate('/login')}
-          className="bg-[#5f6FFF] text-white px-8 py-3 rounded-full font-light hidden md:block"
-        >
-          Login
-        </button>
+      <div className="flex">
+        {token && user ? (
+          <div
+            className="hidden md:flex items-center justify-center gap-1 cursor-pointer group relative"
+            onMouseEnter={() => setMenu(true)}
+            onMouseLeave={() => setMenu(false)}
+            onClick={() => setMenu(false)}
+          >
+            <img
+              className="rounded-full w-[40px]"
+              src={user.image}
+              alt="profile pic"
+            />
+            <ArrowDown size={16} color="#5f6FFF" />
+            {menu && (
+              <div className="absolute top-0 right-0 z-20 pt-20">
+                <div className="min-w-48 flex flex-col gap-4 p-4 rounded bg-gray-800 font-medium text-base text-white ">
+                  <p
+                    onClick={() => navigate('/user-profile')}
+                    className="hover:text-black cursor-pointer"
+                  >
+                    My Profile
+                  </p>
+                  <p
+                    onClick={() => navigate('/my-appointments')}
+                    className="hover:text-black cursor-pointer"
+                  >
+                    My Appointments
+                  </p>
+                  <p
+                    className="hover:text-black cursor-pointer"
+                    onClick={() => logout()}
+                  >
+                    Logout
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <button
+            onClick={() => navigate('/login')}
+            className="bg-[#5f6FFF] text-white px-8 py-3 rounded-full font-light hidden md:block"
+          >
+            Login
+          </button>
+        )}
+
         {!mobileMenu ? (
           <Menu
             color="#5f6FFF"
@@ -80,7 +135,11 @@ const Header = () => {
         >
           <div>
             <ul className="flex flex-col items-start md:gap-1 lg:gap-5 font-medium text-xl">
-              <NavLink className="py-1 px-2 hover:text-[#5f6FFF] " to="/">
+              <NavLink
+                className="py-1 px-2 hover:text-[#5f6FFF] "
+                to="/"
+                onClick={() => setMobileMenu(false)}
+              >
                 <li className="py-1 flex items-start gap-5">
                   <House />
                   Home
@@ -89,13 +148,18 @@ const Header = () => {
               <NavLink
                 className="py-1 px-2 hover:text-[#5f6FFF] "
                 to="/doctors"
+                onClick={() => setMobileMenu(false)}
               >
                 <li className="py-1 flex gap-5">
                   <UsersRound />
                   Doctors
                 </li>
               </NavLink>
-              <NavLink className="py-1 px-2  hover:text-[#5f6FFF] " to="/about">
+              <NavLink
+                className="py-1 px-2  hover:text-[#5f6FFF] "
+                to="/about"
+                onClick={() => setMobileMenu(false)}
+              >
                 <li className="py-1 flex gap-5">
                   <Info />
                   About
@@ -104,6 +168,7 @@ const Header = () => {
               <NavLink
                 className="py-1 px-2  hover:text-[#5f6FFF] "
                 to="/contact"
+                onClick={() => setMobileMenu(false)}
               >
                 <li className="py-1 flex gap-5">
                   <Contact />
@@ -113,12 +178,64 @@ const Header = () => {
               <NavLink
                 className="py-1 px-2 hover:text-[#5f6FFF] "
                 to="/appointments"
+                onClick={() => setMobileMenu(false)}
               >
                 <li className="py-1 flex gap-5">
                   <AlarmClockCheck />
                   Appointments
                 </li>
               </NavLink>
+              {token && user && (
+                <div className="flex flex-col items-start md:gap-1 lg:gap-5 font-medium text-xl">
+                  <NavLink
+                    className="py-1 px-2 hover:text-[#5f6FFF] "
+                    to="/user-profile"
+                    onClick={() => setMobileMenu(false)}
+                  >
+                    <li className="py-1 flex items-start gap-5">
+                      <UserPen />
+                      My Profile
+                    </li>
+                  </NavLink>
+                  <NavLink
+                    className="py-1 px-2 hover:text-[#5f6FFF] "
+                    to="/my-appointments"
+                    onClick={() => setMobileMenu(false)}
+                  >
+                    <li className="py-1 flex items-start gap-5">
+                      <Projector />
+                      My Appointments
+                    </li>
+                  </NavLink>
+                  <div
+                    className="py-1 px-2 hover:text-[#5f6FFF] "
+                    onClick={() => {
+                      logout();
+                      navigate('/');
+                      setMobileMenu(false);
+                    }}
+                  >
+                    <li className="py-1 flex items-start gap-5">
+                      <LogOut />
+                      Logout
+                    </li>
+                  </div>
+                </div>
+              )}
+              {!token && (
+                <div
+                  className="py-1 px-2 hover:text-[#5f6FFF] "
+                  onClick={() => {
+                    navigate('/login');
+                    setMobileMenu(false);
+                  }}
+                >
+                  <li className="py-1 flex items-start gap-5">
+                    <LogIn />
+                    Login
+                  </li>
+                </div>
+              )}
             </ul>
           </div>
         </motion.div>

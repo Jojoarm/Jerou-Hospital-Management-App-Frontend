@@ -3,9 +3,18 @@ import background10 from '../assets/background10.jpg';
 import { specialityData } from '../assets/assets';
 import TopDoctors from '../components/TopDoctors';
 import { UsersRound } from 'lucide-react';
+import { useEffect } from 'react';
+import { useAuthStore } from '../store/authStore';
 
 const Home = () => {
   const navigate = useNavigate();
+  //   const { token, getUser } = useAuthStore();
+
+  //   useEffect(() => {
+  //     console.log(token);
+  //     //   getUser();
+  //   }, [token]);
+
   return (
     <div className="mt-[100px]">
       <div className="bg-[url('https://res.cloudinary.com/jojo-cloud/image/upload/v1730273984/background12_cygtw4.jpg')] md:bg-[url('https://res.cloudinary.com/jojo-cloud/image/upload/v1730221708/background8_oz8dun.jpg')] relative bg-cover bg-no-repeat overflow-hidden w-full h-lvh">
