@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Input from '../components/Input';
 import { Users, MailMinus, Lock, Loader } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -9,7 +9,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { userSignup, isLoading } = useContext(AppContext);
+  const { userSignup, isLoading, token } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,6 +20,13 @@ function SignUp() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token]);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

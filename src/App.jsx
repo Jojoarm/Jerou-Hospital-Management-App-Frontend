@@ -9,6 +9,10 @@ import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
 import { useContext } from 'react';
 import { AppContext } from './context/AppContext';
+import AllDoctors from './pages/AllDoctors';
+import FilteredDoctors from './pages/FilteredDoctors';
+import Doctor from './pages/Doctor';
+import MyAppointments from './pages/MyAppointments';
 
 const App = () => {
   const ProtectedRoutes = ({ children }) => {
@@ -26,11 +30,22 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/all-doctors" element={<AllDoctors />} />
+        <Route path="/all-doctors/:speciality" element={<FilteredDoctors />} />
+        <Route path="/doctor/:docId" element={<Doctor />} />
         <Route
           path="/user-profile"
           element={
             <ProtectedRoutes>
               <UserProfile />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/my-appointments"
+          element={
+            <ProtectedRoutes>
+              <MyAppointments />
             </ProtectedRoutes>
           }
         />

@@ -3,17 +3,9 @@ import background10 from '../assets/background10.jpg';
 import { specialityData } from '../assets/assets';
 import TopDoctors from '../components/TopDoctors';
 import { UsersRound } from 'lucide-react';
-import { useEffect } from 'react';
-import { useAuthStore } from '../store/authStore';
 
 const Home = () => {
   const navigate = useNavigate();
-  //   const { token, getUser } = useAuthStore();
-
-  //   useEffect(() => {
-  //     console.log(token);
-  //     //   getUser();
-  //   }, [token]);
 
   return (
     <div className="mt-[100px]">

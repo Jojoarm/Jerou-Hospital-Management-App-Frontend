@@ -39,7 +39,10 @@ const Header = () => {
             <li className="py-1">Home</li>
             <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
           </NavLink>
-          <NavLink className="py-1 px-2 hover:text-[#5f6FFF] " to="/doctors">
+          <NavLink
+            className="py-1 px-2 hover:text-[#5f6FFF] "
+            to="/all-doctors"
+          >
             <li className="py-1">Doctors</li>
             <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
           </NavLink>
@@ -66,7 +69,7 @@ const Header = () => {
             className="hidden md:flex items-center justify-center gap-1 cursor-pointer group relative"
             onMouseEnter={() => setMenu(true)}
             onMouseLeave={() => setMenu(false)}
-            onClick={() => setMenu(false)}
+            onClick={() => setMenu(true)}
           >
             <img
               className="rounded-full w-[40px]"
@@ -147,7 +150,7 @@ const Header = () => {
               </NavLink>
               <NavLink
                 className="py-1 px-2 hover:text-[#5f6FFF] "
-                to="/doctors"
+                to="/all-doctors"
                 onClick={() => setMobileMenu(false)}
               >
                 <li className="py-1 flex gap-5">

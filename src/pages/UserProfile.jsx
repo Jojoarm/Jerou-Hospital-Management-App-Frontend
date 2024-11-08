@@ -1,7 +1,14 @@
 import { useContext, useState } from 'react';
 import { motion } from 'framer-motion';
 import { AppContext } from '../context/AppContext';
-import { Calendar1, Loader, MapPinHouse, Phone, Users } from 'lucide-react';
+import {
+  Calendar1,
+  CircleX,
+  Loader,
+  MapPinHouse,
+  Phone,
+  Users,
+} from 'lucide-react';
 import Input from '../components/Input';
 import { assets } from '../assets/assets';
 import { toast } from 'react-toastify';
@@ -106,10 +113,14 @@ const UserProfile = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="mx-auto flex flex-col items-center justify-center h-full border-b-2 border-t-2  border-[#5f6FFF] rounded-xl gap-3 m-auto min-h-[70vh] max-w-[340px] sm:max-w-md w-full text-sm shadow-lg"
+            className="relative mx-auto flex flex-col items-center justify-center h-full border-b-2 border-t-2  border-[#5f6FFF] rounded-xl gap-3 m-auto min-h-[70vh] max-w-[340px] sm:max-w-md w-full text-sm shadow-lg"
           >
             <div className="p-4">
-              <h2 className="text-xl font-semibold mb-6 text-center text-orange-500 bg-clip-text">
+              <CircleX
+                className="absolute right-0 top-0 m-2 cursor-pointer size-4 md:size-5 text-slate-500"
+                onClick={() => setEditing(false)}
+              />
+              <h2 className="text-xl font-semibold mb-6 text-center text-[#5f6FFF] bg-clip-text">
                 Update Your Profile
               </h2>
               <form onSubmit={handleSubmit}>
