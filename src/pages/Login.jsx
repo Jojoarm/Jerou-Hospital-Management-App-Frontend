@@ -23,6 +23,7 @@ function Login() {
   useEffect(() => {
     if (token) {
       navigate('/');
+      scrollTo(0, 0);
     }
   }, [token]);
 

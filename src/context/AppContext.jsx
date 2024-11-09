@@ -12,6 +12,7 @@ const AppContextProvider = (props) => {
     localStorage.getItem('token') ? localStorage.getItem('token') : ''
   );
   const [doctors, setDoctors] = useState([]);
+  const [userAppointments, setUserAppointments] = useState([]);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const navigate = useNavigate();
@@ -93,6 +94,71 @@ const AppContextProvider = (props) => {
     }
   };
 
+  const getUserAppointments = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.get(
+        `${backendUrl}/api/user/get-appointments`,
+        { headers: { token } }
+      );
+      if (data.success) {
+        setIsLoading(false);
+        setUserAppointments(data.appointments);
+      } else {
+        setIsLoading(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
+  const cancelAppointment = async (appointmentId) => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/cancel-appointment`,
+        { appointmentId },
+        { headers: { token } }
+      );
+      if (data.success) {
+        setIsLoading(false);
+        toast.success(data.message);
+      } else {
+        setIsLoading(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
+  const deleteAppointment = async (appointmentId) => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/delete-appointment`,
+        { appointmentId },
+        { headers: { token } }
+      );
+      if (data.success) {
+        setIsLoading(false);
+        toast.success(data.message);
+      } else {
+        setIsLoading(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
   const value = {
     user,
     setUser,
@@ -107,6 +173,10 @@ const AppContextProvider = (props) => {
     doctors,
     setDoctors,
     getDoctors,
+    getUserAppointments,
+    userAppointments,
+    cancelAppointment,
+    deleteAppointment,
   };
 
   useEffect(() => {

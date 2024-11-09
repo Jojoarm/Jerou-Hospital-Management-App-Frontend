@@ -13,6 +13,7 @@ import AllDoctors from './pages/AllDoctors';
 import FilteredDoctors from './pages/FilteredDoctors';
 import Doctor from './pages/Doctor';
 import MyAppointments from './pages/MyAppointments';
+import AppointmentReschedule from './pages/AppointmentReschedule';
 
 const App = () => {
   const ProtectedRoutes = ({ children }) => {
@@ -46,6 +47,14 @@ const App = () => {
           element={
             <ProtectedRoutes>
               <MyAppointments />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/reschedule-appointment/:appointmentId"
+          element={
+            <ProtectedRoutes>
+              <AppointmentReschedule />
             </ProtectedRoutes>
           }
         />

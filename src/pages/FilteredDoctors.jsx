@@ -43,6 +43,7 @@ const FilteredDoctors = () => {
             className="text-blue-500 underline text-sm cursor-pointer"
             onClick={() => {
               navigate('/all-doctors');
+              scrollTo(0, 0);
             }}
           >
             Reset Filters
@@ -55,6 +56,7 @@ const FilteredDoctors = () => {
               className="w-full px-3 py-2 border rounded-full text-sm text-slate-700 cursor-pointer hover:bg-slate-800 hover:text-white"
               onClick={() => {
                 navigate(`/all-doctors/${item.speciality}`);
+                scrollTo(0, 0);
                 setFilter(item.speciality);
               }}
             >
@@ -76,7 +78,10 @@ const FilteredDoctors = () => {
               transition={{ duration: 0.5 }}
               key={index}
               className="border border-slate-200 rounded-xl overflow-hidden cursor-pointer hover:scale-125 transition-all duration-500"
-              onClick={() => navigate(`/doctor/${item._id}`)}
+              onClick={() => {
+                navigate(`/doctor/${item._id}`);
+                scrollTo(0, 0);
+              }}
             >
               <div className="h-full w-full bg-slate-200">
                 <img
