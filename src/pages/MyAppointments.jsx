@@ -1,15 +1,29 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import PaystackPop from '@paystack/inline-js';
+import stripe_logo from '../assets/stripe.png';
+import paystack_logo from '../assets/paystack-logo.png';
+import { motion } from 'framer-motion';
+import { Check, CircleX, ThumbsUp, X } from 'lucide-react';
+
+const popup = new PaystackPop();
 
 const MyAppointments = () => {
+  const [showPaymentMethod, setShowPaymentMethod] = useState(false);
   const {
     getUserAppointments,
     userAppointments,
     isLoading,
+    setIsLoading,
     cancelAppointment,
     deleteAppointment,
+    backendUrl,
+    token,
+    verifyPaystackPayment,
   } = useContext(AppContext);
   const navigate = useNavigate();
   const months = [
@@ -31,6 +45,56 @@ const MyAppointments = () => {
     return (
       dateArray[0] + ' ' + months[Number(dateArray[1]) - 1] + ' ' + dateArray[2]
     );
+  };
+
+  const makeStripePayment = async (appointmentId) => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/stripe-checkout`,
+        { appointmentId },
+        { headers: { token, 'Content-Type': 'application/json' } }
+      );
+      if (data.success) {
+        setIsLoading(false);
+        window.location.href = data?.url;
+        // getUserAppointments();
+      } else {
+        setIsLoading(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const makePaystackPayment = async (appointmentId) => {
+    try {
+      // setIsLoading(true);
+      const { data } = await axios.post(
+        `${backendUrl}/api/user/paystack-checkout`,
+        { appointmentId },
+        { headers: { token, 'Content-Type': 'application/json' } }
+      );
+      // console.log('data', data?.data.authorization_url);
+      if (data.status) {
+        setIsLoading(false);
+        popup.resumeTransaction(data?.data.access_code);
+        window.location.href = data?.data.authorization_url;
+
+        getUserAppointments();
+        verifyPaystackPayment(data?.data.reference);
+      } else {
+        setIsLoading(false);
+        toast.error(data.message);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+      toast.error(error.message);
+    }
   };
 
   const handleCancelAppointment = async (appointmentId) => {
@@ -86,18 +150,85 @@ const MyAppointments = () => {
 
             {!item.cancelled ? (
               <div className="w-full flex flex-col gap-2 items-end justify-end">
-                <button className="bg-white hover:bg-orange-500 hover:text-white border rounded w-full md:w-48 p-2">
-                  Pay Online
-                </button>
+                {!item.paid && !showPaymentMethod && (
+                  <button
+                    className="bg-white hover:bg-orange-500 hover:text-white border rounded w-full md:w-48 p-2"
+                    onClick={() => setShowPaymentMethod(true)}
+                  >
+                    Pay Online
+                  </button>
+                )}
+                {item.paid && (
+                  <div className="flex gap-2 items-center justify-center bg-white text-green-500 w-full md:w-48 p-2">
+                    <p>Appointment Booked</p>
+                    <ThumbsUp className="size-5" />
+                  </div>
+                )}
+                {item.isCompleted && (
+                  <div className="flex gap-2 items-center justify-center bg-white text-green-500 w-full md:w-48 p-2">
+                    <p>Completed</p>
+                    <Check className="size-5" />
+                  </div>
+                )}
+                {/* selecting payment method */}
+                {showPaymentMethod && (
+                  <div className="fixed h-full w-full bg-slate-200 bg-opacity-35 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+                    <motion.div
+                      className="relative flex flex-col gap-2 items-center rounded border-r-2 border-l-2 shadow bg-white border-blue-500 w-80 p-4"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <h2 className="font-bold text-base">
+                        Select Payment Method
+                      </h2>
+                      <div className=" flex gap-6 justify-between">
+                        <CircleX
+                          className="size-5 text-red-400 absolute top-0 right-0 m-2 cursor-pointer"
+                          onClick={() => setShowPaymentMethod(false)}
+                        />
+                        <div
+                          className="w-24 cursor-pointer p-2 border-2 rounded-xl shadow"
+                          onClick={() => {
+                            makeStripePayment(item._id);
+                            setShowPaymentMethod(false);
+                          }}
+                        >
+                          <img
+                            src={stripe_logo}
+                            className="rounded object-contain"
+                            alt="stripe logo"
+                          />
+                        </div>
+                        <div
+                          className="w-24 cursor-pointer p-2 border-2 rounded-xl shadow"
+                          onClick={() => {
+                            makePaystackPayment(item._id);
+                            setShowPaymentMethod(false);
+                          }}
+                        >
+                          <img
+                            src={paystack_logo}
+                            className="rounded object-contain"
+                            alt="paystack logo"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
                 <button
-                  className="bg-white hover:bg-red-500 hover:text-white border rounded w-full md:w-48 p-2"
+                  className="bg-white hover:bg-red-500 hover:text-white border border-red-300 text-red-400 rounded w-full md:w-48 p-2"
                   onClick={() => handleCancelAppointment(item._id)}
                 >
                   Cancel Appointment
                 </button>
               </div>
             ) : (
-              <div className="w-full flex flex-col gap-2 items-end justify-end">
+              <div className="w-full relative flex flex-col gap-2 items-end justify-end">
+                <p className="sm:absolute sm:top-0 sm:right-0 text-red-600">
+                  Appointment Cancelled!
+                </p>
                 <button
                   className=" bg-green-500 text-white border rounded w-full md:w-48 p-2"
                   onClick={() => {

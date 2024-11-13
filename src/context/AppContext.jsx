@@ -13,6 +13,7 @@ const AppContextProvider = (props) => {
   );
   const [doctors, setDoctors] = useState([]);
   const [userAppointments, setUserAppointments] = useState([]);
+
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const navigate = useNavigate();
@@ -159,6 +160,29 @@ const AppContextProvider = (props) => {
     }
   };
 
+  const verifyPaystackPayment = async (reference) => {
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `${backendUrl}/api/user/verify-paystack-payment/${reference}`,
+        { headers: { token, 'Content-Type': 'application/json' } }
+      );
+      if (data.success) {
+        setIsLoading(false);
+        navigate('/my-appointments');
+        toast.success(data.message);
+      } else {
+        setIsLoading(false);
+        toast.error(data.message);
+        navigate('/my-appointments');
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   const value = {
     user,
     setUser,
@@ -177,6 +201,7 @@ const AppContextProvider = (props) => {
     userAppointments,
     cancelAppointment,
     deleteAppointment,
+    verifyPaystackPayment,
   };
 
   useEffect(() => {

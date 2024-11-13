@@ -247,8 +247,8 @@ const AppointmentReschedule = () => {
                         : 'border border-gray-200'
                     }`}
                   >
-                    <p>{daysOfWeek[item[0].dateTime.getDay()]}</p>
-                    <p>{item[0].dateTime.getDate()}</p>
+                    <p>{daysOfWeek[item[0]?.dateTime.getDay()]}</p>
+                    <p>{item[0]?.dateTime.getDate()}</p>
                   </div>
                 ))}
             </div>

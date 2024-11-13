@@ -14,6 +14,9 @@ import FilteredDoctors from './pages/FilteredDoctors';
 import Doctor from './pages/Doctor';
 import MyAppointments from './pages/MyAppointments';
 import AppointmentReschedule from './pages/AppointmentReschedule';
+import PaystackVerification from './pages/PaystackVerification';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
 const App = () => {
   const ProtectedRoutes = ({ children }) => {
@@ -34,6 +37,8 @@ const App = () => {
         <Route path="/all-doctors" element={<AllDoctors />} />
         <Route path="/all-doctors/:speciality" element={<FilteredDoctors />} />
         <Route path="/doctor/:docId" element={<Doctor />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="/user-profile"
           element={
@@ -55,6 +60,14 @@ const App = () => {
           element={
             <ProtectedRoutes>
               <AppointmentReschedule />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/paystack-payment-verification"
+          element={
+            <ProtectedRoutes>
+              <PaystackVerification />
             </ProtectedRoutes>
           }
         />

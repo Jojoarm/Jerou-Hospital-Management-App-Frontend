@@ -117,7 +117,7 @@ const UserProfile = () => {
           >
             <div className="p-4">
               <CircleX
-                className="absolute right-0 top-0 m-2 cursor-pointer size-4 md:size-5 text-slate-500"
+                className="absolute right-0 top-0 m-2 cursor-pointer size-4 md:size-5 text-red-500"
                 onClick={() => setEditing(false)}
               />
               <h2 className="text-xl font-semibold mb-6 text-center text-[#5f6FFF] bg-clip-text">

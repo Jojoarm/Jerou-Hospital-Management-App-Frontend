@@ -8,7 +8,7 @@ import { AppContext } from '../context/AppContext.jsx';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { userLogin, isLoading, token } = useContext(AppContext);
+  const { userLogin, isLoading, token, user } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,11 +21,11 @@ function Login() {
   };
 
   useEffect(() => {
-    if (token) {
+    if (user) {
       navigate('/');
       scrollTo(0, 0);
     }
-  }, [token]);
+  }, [user]);
 
   return (
     <motion.div
