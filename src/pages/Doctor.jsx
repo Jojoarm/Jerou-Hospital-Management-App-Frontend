@@ -26,7 +26,7 @@ const Doctor = () => {
     setIsLoading(true);
     try {
       const { data } = await axios.get(
-        `${backendUrl}/api/doctor/doctor-profile/${docId}`
+        `${backendUrl}/api/user/doctor-profile/${docId}`
       );
       if (data.success) {
         setIsLoading(false);
@@ -196,66 +196,74 @@ const Doctor = () => {
               Appointment Fee:{' '}
               <span className="font-semibold">&#8358; {docData.fee}</span>
             </p>
-          </motion.div>
-          <div className="flex flex-col items-center justify-self-center gap-5">
-            <p className="text-xl font-semibold text-center">
-              Available Booking Slots
+            <p className="text-slate-900">
+              Available:{' '}
+              <span className="font-semibold">
+                {docData.available ? 'Yes' : 'No'}
+              </span>
             </p>
-            <div className="flex gap-3 flex-wrap items-center justify-center text-xs md:text-sm mb-3">
-              {availableSlots.length &&
-                availableSlots.map((item, index) => (
-                  <div
-                    key={index}
-                    onClick={() => {
-                      setSlotIndex(index);
-                      setShowTime(true);
-                    }}
-                    className={`text-center py-1 px-2 md:px-5 min-w-16 rounded cursor-pointer ${
-                      slotIndex === index
-                        ? 'bg-orange-500 text-white'
-                        : 'border border-gray-200'
-                    }`}
-                  >
-                    <p>{daysOfWeek[item[0]?.dateTime.getDay()]}</p>
-                    <p>{item[0]?.dateTime.getDate()}</p>
-                  </div>
-                ))}
-            </div>
-            {showTime && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 2.5 }}
-                className="flex gap-3 flex-wrap items-center justify-center md:max-w-[700px] lg:max-w-[1000px] rounded-xl text-xs md:text-sm shadow-sm shadow-orange-300  p-4"
-              >
+          </motion.div>
+          {docData.available && (
+            <div className="flex flex-col items-center justify-self-center gap-5">
+              <p className="text-xl font-semibold text-center">
+                Available Booking Slots
+              </p>
+              <div className="flex gap-3 flex-wrap items-center justify-center text-xs md:text-sm mb-3">
                 {availableSlots.length &&
-                  availableSlots[slotIndex].map((item, index) => (
+                  availableSlots.map((item, index) => (
                     <div
                       key={index}
                       onClick={() => {
-                        setSlotTime(item.time);
-                        setAllowBooking(true);
+                        setSlotIndex(index);
+                        setShowTime(true);
                       }}
-                      className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
-                        item.time === slotTime
+                      className={`text-center py-1 px-2 md:px-5 min-w-16 rounded cursor-pointer ${
+                        slotIndex === index
                           ? 'bg-orange-500 text-white'
-                          : 'text-gray-400 border border-gray-300'
+                          : 'border border-gray-200'
                       }`}
                     >
-                      {item.time.toLowerCase()}
+                      <p>{daysOfWeek[item[0]?.dateTime.getDay()]}</p>
+                      <p>{item[0]?.dateTime.getDate()}</p>
                     </div>
                   ))}
-              </motion.div>
-            )}
+              </div>
+              {showTime && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 2.5 }}
+                  className="flex gap-3 flex-wrap items-center justify-center md:max-w-[700px] lg:max-w-[1000px] rounded-xl text-xs md:text-sm shadow-sm shadow-orange-300  p-4"
+                >
+                  {availableSlots.length &&
+                    availableSlots[slotIndex].map((item, index) => (
+                      <div
+                        key={index}
+                        onClick={() => {
+                          setSlotTime(item.time);
+                          setAllowBooking(true);
+                        }}
+                        className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
+                          item.time === slotTime
+                            ? 'bg-orange-500 text-white'
+                            : 'text-gray-400 border border-gray-300'
+                        }`}
+                      >
+                        {item.time.toLowerCase()}
+                      </div>
+                    ))}
+                </motion.div>
+              )}
 
-            <button
-              onClick={bookAppointment}
-              className="bg-orange-500 disabled:bg-orange-200 disabled:cursor-not-allowed text-white text-sm font-light px-14 py-3 rounded-full my-6"
-              disabled={!allowBooking}
-            >
-              Book Appointment
-            </button>
-          </div>
+              <button
+                onClick={bookAppointment}
+                className="bg-orange-500 disabled:bg-orange-200 disabled:cursor-not-allowed text-white text-sm font-light px-14 py-3 rounded-full my-6"
+                disabled={!allowBooking}
+              >
+                Book Appointment
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <hr />

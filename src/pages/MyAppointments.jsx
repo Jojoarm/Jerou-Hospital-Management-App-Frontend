@@ -158,7 +158,7 @@ const MyAppointments = () => {
                     Pay Online
                   </button>
                 )}
-                {item.paid && (
+                {item.paid && !item.isCompleted && (
                   <div className="flex gap-2 items-center justify-center bg-white text-green-500 w-full md:w-48 p-2">
                     <p>Appointment Booked</p>
                     <ThumbsUp className="size-5" />

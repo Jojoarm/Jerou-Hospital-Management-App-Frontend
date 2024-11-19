@@ -48,26 +48,27 @@ const About = () => {
 
       <div className="text-xl my-4">
         <p>
-          WHY <span className="text-gray-700 font-semibold">CHOOSE US</span>
+          WHY <span className="text-gray-700 font-semibold">CHOOSE US?</span>
         </p>
+        <hr />
       </div>
 
-      <div className="flex flex-col md:flex-row mb-20">
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-orange-500 hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
+      <div className="flex flex-col md:flex-row gap-2 mb-20">
+        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] rounded-2xl hover:bg-orange-500 hover:text-white hover:scale-95 transition-all duration-300 text-gray-600 cursor-pointer">
           <b>Efficiency:</b>
           <p>
             Nulla faucibus lorem cursus blandit pulvinar. Curabitur nisl magna,
             sollicitudin quis tempor at, aliquam vel mi.
           </p>
         </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-orange-500 hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
+        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] rounded-2xl hover:bg-orange-500 hover:text-white hover:scale-95  transition-all duration-300 text-gray-600 cursor-pointer">
           <b>Convinience:</b>
           <p>
             Morbi massa massa, sollicitudin in neque at, faucibus ornare erat.
             Cras massa sem, feugiat et scelerisque in, consectetur vitae lorem.
           </p>
         </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-orange-500 hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
+        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] rounded-2xl hover:bg-orange-500 hover:text-white hover:scale-95  transition-all duration-300 text-gray-600 cursor-pointer">
           <b>Personalization</b>
           <p>
             Integer faucibus lobortis pharetra. Curabitur faucibus pretium ex ut

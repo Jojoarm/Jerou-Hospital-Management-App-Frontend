@@ -11,7 +11,7 @@ const Contact = () => {
 
       <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28 text-sm">
         <img
-          className="w-full max-w-[350px]"
+          className="w-full max-w-[350px] rounded-2xl shadow-2xl cursor-pointer hover:scale-105 transition-all duration-300"
           src={assets.contact_image}
           alt="contact image"
         />
@@ -22,10 +22,10 @@ const Contact = () => {
             Nigeria
           </p>
           <p className="text-gray-500">
-            Tel: +234 806 682-5721 <br /> Email: devArmanicreates@gmail.com
+            Tel: +234 703 642-4846 <br /> Email: jerouhospitallimited@gmail.com
           </p>
           <p className="font-semibold text-lg text-gray-600">
-            Carrers at PRESCRIPTO
+            Carrers at JEROU
           </p>
           <p className="text-gray-500">
             Learn more about our teams and job openings

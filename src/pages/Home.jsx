@@ -3,9 +3,14 @@ import background10 from '../assets/background10.jpg';
 import { specialityData } from '../assets/assets';
 import TopDoctors from '../components/TopDoctors';
 import { UsersRound } from 'lucide-react';
+import HomeEvents from '../components/HomeEvents';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import HomePosts from '../components/HomePosts';
 
 const Home = () => {
   const navigate = useNavigate();
+  const { user } = useContext(AppContext);
 
   return (
     <div className="mt-[100px]">
@@ -22,7 +27,7 @@ const Home = () => {
               Find a Doctor
             </Link>
             <Link
-              to="/appointments"
+              to="/all-doctors"
               className="bg-[#5f6FFF] text-white hover:bg-white hover:text-[#5f6fff] px-3 py-2 sm:px-8 sm:py-3 rounded"
             >
               Book an Appointment
@@ -31,7 +36,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-10 h-full m-10 justify-center border-b border-gray-400 pb-5">
+      <div className="flex flex-col md:flex-row gap-10 h-full m-10 justify-center  pb-5">
         <div className="md:w-[30%] flex flex-col gap-3 items-start justify-center">
           <h2 className="text-3xl font-bold">Healing starts here</h2>
           <div>
@@ -59,12 +64,13 @@ const Home = () => {
           <img
             src={background10}
             alt="profile pic"
-            className="w-[320px] h-[480px] md:w-[400px] md:h-[600px] rounded-full"
+            className="w-[320px] h-[480px] md:w-[400px] md:h-[600px] rounded-3xl"
           />
         </div>
       </div>
+      <hr />
 
-      <div className="flex flex-col items-center justify-center gap-5 px-10 text-center">
+      <div className="flex flex-col items-center justify-center gap-5 py-5 px-10 text-center">
         <h2 className="text-xl font-bold">Find by Speciality</h2>
         <p className="text-sm">
           Browse through our extensive list of seasoned doctors by their
@@ -86,6 +92,12 @@ const Home = () => {
 
       <TopDoctors />
 
+      <hr />
+      <div className="grid md:grid-cols-[2fr_1fr] gap-10 px-5 md:px-16 my-10">
+        <HomePosts />
+        <HomeEvents />
+      </div>
+
       <div className="flex flex-col md:flex-row items-center text-center md:text-start gap-5 bg-indigo-950 text-white p-10 justify-center md:justify-between">
         <UsersRound className="hidden md:block" size={50} />
         <h2 className="text-4xl font-manrope font-bold">
@@ -96,7 +108,9 @@ const Home = () => {
           your health needs by booking an appointment
         </p>
         <button
-          onClick={() => navigate('/login')}
+          onClick={
+            user ? () => navigate('/all-doctors') : () => navigate('/login')
+          }
           className="bg-[#5f6FFF] text-white px-8 py-3 rounded-full font-light"
         >
           Book Appointment

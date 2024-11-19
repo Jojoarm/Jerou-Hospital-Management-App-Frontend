@@ -17,6 +17,10 @@ import AppointmentReschedule from './pages/AppointmentReschedule';
 import PaystackVerification from './pages/PaystackVerification';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Events from './pages/Events';
+import Event from './pages/Event';
+import Posts from './pages/Posts';
+import Post from './pages/Post';
 
 const App = () => {
   const ProtectedRoutes = ({ children }) => {
@@ -39,6 +43,10 @@ const App = () => {
         <Route path="/doctor/:docId" element={<Doctor />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/event/:eventId" element={<Event />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/post/:postId" element={<Post />} />
         <Route
           path="/user-profile"
           element={

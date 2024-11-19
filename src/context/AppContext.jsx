@@ -13,10 +13,39 @@ const AppContextProvider = (props) => {
   );
   const [doctors, setDoctors] = useState([]);
   const [userAppointments, setUserAppointments] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const navigate = useNavigate();
+
+  const monthsOfYear = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const convertTime = (time) => {
+    const [hour, minute] = time.split(':');
+    let formattedHour = parseInt(hour);
+
+    if (formattedHour > 12) {
+      formattedHour = formattedHour - 12;
+      return `${formattedHour}:${minute} PM`;
+    } else {
+      return `${hour}:${minute} AM`;
+    }
+  };
 
   const userSignup = async (name, email, password) => {
     try {
@@ -183,6 +212,35 @@ const AppContextProvider = (props) => {
     }
   };
 
+  const getPosts = async () => {
+    try {
+      const { data } = await axios.get(`${backendUrl}/api/user/posts`);
+      if (data.success) {
+        setPosts(data.posts);
+        // console.log('post', data);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
+  const getEvents = async () => {
+    try {
+      const { data } = await axios.get(`${backendUrl}/api/admin/events`);
+      if (data.success) {
+        setEvents(data.events);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
   const value = {
     user,
     setUser,
@@ -202,10 +260,18 @@ const AppContextProvider = (props) => {
     cancelAppointment,
     deleteAppointment,
     verifyPaystackPayment,
+    getEvents,
+    events,
+    convertTime,
+    monthsOfYear,
+    getPosts,
+    posts,
   };
 
   useEffect(() => {
     getDoctors();
+    getEvents();
+    getPosts();
   }, []);
 
   useEffect(() => {

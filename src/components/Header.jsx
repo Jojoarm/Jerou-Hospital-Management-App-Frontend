@@ -54,13 +54,6 @@ const Header = () => {
             <li className="py-1">Contact</li>
             <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
           </NavLink>
-          <NavLink
-            className="py-1 px-2 hover:text-[#5f6FFF] "
-            to="/appointments"
-          >
-            <li className="py-1">Appointments</li>
-            <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
-          </NavLink>
         </ul>
       </div>
       <div className="flex">
@@ -72,7 +65,7 @@ const Header = () => {
             onClick={() => setMenu(true)}
           >
             <img
-              className="rounded-full w-[40px]"
+              className="rounded-full w-[25px]"
               src={user.image}
               alt="profile pic"
             />
@@ -176,16 +169,6 @@ const Header = () => {
                 <li className="py-1 flex gap-5">
                   <Contact />
                   Contact
-                </li>
-              </NavLink>
-              <NavLink
-                className="py-1 px-2 hover:text-[#5f6FFF] "
-                to="/appointments"
-                onClick={() => setMobileMenu(false)}
-              >
-                <li className="py-1 flex gap-5">
-                  <AlarmClockCheck />
-                  Appointments
                 </li>
               </NavLink>
               {!user && (
