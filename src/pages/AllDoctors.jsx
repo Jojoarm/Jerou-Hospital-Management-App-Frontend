@@ -84,13 +84,9 @@ const AllDoctors = () => {
         </div>
         <div className="flex flex-wrap w-full justify-center items-start gap-5">
           {doctors.map((item, index) => (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.5 }}
+            <div
               key={index}
-              className="border border-slate-200 rounded-xl overflow-hidden cursor-pointer hover:scale-125 transition-all duration-500"
+              className="border border-slate-200 rounded-xl overflow-hidden cursor-pointer shadow-xl hover:scale-105 transition-all duration-500"
               onClick={() => {
                 navigate(`/doctor/${item._id}`);
                 scrollTo(0, 0);
@@ -121,7 +117,7 @@ const AllDoctors = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
