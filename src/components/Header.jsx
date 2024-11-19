@@ -1,7 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import {
-  AlarmClockCheck,
   Contact,
   House,
   Info,
@@ -171,20 +170,7 @@ const Header = () => {
                   Contact
                 </li>
               </NavLink>
-              {!user && (
-                <div
-                  className="py-1 px-2 hover:text-[#5f6FFF] "
-                  onClick={() => {
-                    navigate('/login');
-                    setMobileMenu(false);
-                  }}
-                >
-                  <li className="py-1 flex items-start gap-5">
-                    <LogIn />
-                    Login
-                  </li>
-                </div>
-              )}
+
               {token && user && (
                 <div className="flex flex-col items-start md:gap-1 lg:gap-5 font-medium text-xl">
                   <NavLink

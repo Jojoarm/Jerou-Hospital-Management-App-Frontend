@@ -147,25 +147,25 @@ const Doctor = () => {
 
   return (
     <div className="mt-[150px] flex flex-col gap-10 p-5">
-      <div className="flex flex-col md:flex-row gap-2 mb-10">
+      <div className="grid md:flex md:flex-row gap-2 mb-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 1.5 }}
-          className="w-full max-w-72 max-h-64"
+          className="w-full md:max-h-64 mb-5 md:mb-1 "
         >
           <img
             src={docData.image}
             alt="profile pic"
-            className="h-full object-contain border-2 border-slate-300 shadow rounded-xl"
+            className="h-full w-full object-cover border-2 border-slate-300 shadow rounded-xl"
           />
         </motion.div>
 
         <div className="flex flex-col gap-10 ">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 2.5 }}
             className="flex flex-col gap-3 p-6 border-r-2 border-l-2 shadow border-slate-500 bg-slate-50 rounded-xl h-full"
           >
