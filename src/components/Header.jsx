@@ -34,24 +34,21 @@ const Header = () => {
       <Logo />
       <div>
         <ul className="hidden md:flex items-start md:gap-1 lg:gap-5 font-medium md:text-base lg:text-xl ">
-          <NavLink className="py-1 px-2 hover:text-[#5f6FFF] " to="/">
+          <NavLink className="py-1 px-2 hover:text-blue-600 " to="/">
             <li className="py-1">Home</li>
-            <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
+            <hr className="border-none outline-none h-0.5 bg-blue-600 m-auto hidden" />
           </NavLink>
-          <NavLink
-            className="py-1 px-2 hover:text-[#5f6FFF] "
-            to="/all-doctors"
-          >
+          <NavLink className="py-1 px-2 hover:text-blue-600 " to="/all-doctors">
             <li className="py-1">Doctors</li>
-            <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
+            <hr className="border-none outline-none h-0.5 bg-blue-600 m-auto hidden" />
           </NavLink>
-          <NavLink className="py-1 px-2  hover:text-[#5f6FFF] " to="/about">
+          <NavLink className="py-1 px-2  hover:text-blue-600 " to="/about">
             <li className="py-1">About</li>
-            <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
+            <hr className="border-none outline-none h-0.5 bg-blue-600 m-auto hidden" />
           </NavLink>
-          <NavLink className="py-1 px-2  hover:text-[#5f6FFF] " to="/contact">
+          <NavLink className="py-1 px-2  hover:text-blue-600 " to="/contact">
             <li className="py-1">Contact</li>
-            <hr className="border-none outline-none h-0.5 bg-[#5f6FFF] m-auto hidden" />
+            <hr className="border-none outline-none h-0.5 bg-blue-600 m-auto hidden" />
           </NavLink>
         </ul>
       </div>
@@ -71,7 +68,7 @@ const Header = () => {
             <ArrowDown size={16} color="#5f6FFF" />
             {menu && (
               <div className="absolute top-0 right-0 z-20 pt-20">
-                <div className="min-w-48 flex flex-col gap-4 p-4 rounded bg-gray-800 font-medium text-base text-white ">
+                <div className="min-w-48 flex flex-col gap-4 p-4 rounded bg-blue-600 font-medium text-base text-white ">
                   <p
                     onClick={() => navigate('/user-profile')}
                     className="hover:text-black cursor-pointer"
@@ -97,7 +94,7 @@ const Header = () => {
         ) : (
           <button
             onClick={() => navigate('/login')}
-            className="bg-[#5f6FFF] text-white px-8 py-3 rounded-full font-light hidden md:block"
+            className="bg-blue-600 text-white px-8 py-3 rounded-full font-light hidden md:block"
           >
             Login
           </button>
@@ -131,7 +128,7 @@ const Header = () => {
           <div>
             <ul className="flex flex-col items-start md:gap-1 lg:gap-5 font-medium text-xl">
               <NavLink
-                className="py-1 px-2 hover:text-[#5f6FFF] "
+                className="py-1 px-2 hover:text-blue-600 "
                 to="/"
                 onClick={() => setMobileMenu(false)}
               >
@@ -141,7 +138,7 @@ const Header = () => {
                 </li>
               </NavLink>
               <NavLink
-                className="py-1 px-2 hover:text-[#5f6FFF] "
+                className="py-1 px-2 hover:text-blue-600 "
                 to="/all-doctors"
                 onClick={() => setMobileMenu(false)}
               >
@@ -151,7 +148,7 @@ const Header = () => {
                 </li>
               </NavLink>
               <NavLink
-                className="py-1 px-2  hover:text-[#5f6FFF] "
+                className="py-1 px-2  hover:text-blue-600 "
                 to="/about"
                 onClick={() => setMobileMenu(false)}
               >
@@ -161,7 +158,7 @@ const Header = () => {
                 </li>
               </NavLink>
               <NavLink
-                className="py-1 px-2  hover:text-[#5f6FFF] "
+                className="py-1 px-2  hover:text-blue-600 "
                 to="/contact"
                 onClick={() => setMobileMenu(false)}
               >
@@ -174,7 +171,7 @@ const Header = () => {
               {token && user && (
                 <div className="flex flex-col items-start md:gap-1 lg:gap-5 font-medium text-xl">
                   <NavLink
-                    className="py-1 px-2 hover:text-[#5f6FFF] "
+                    className="py-1 px-2 hover:text-blue-600 "
                     to="/user-profile"
                     onClick={() => setMobileMenu(false)}
                   >
@@ -184,7 +181,7 @@ const Header = () => {
                     </li>
                   </NavLink>
                   <NavLink
-                    className="py-1 px-2 hover:text-[#5f6FFF] "
+                    className="py-1 px-2 hover:text-blue-600 "
                     to="/my-appointments"
                     onClick={() => setMobileMenu(false)}
                   >
@@ -194,7 +191,7 @@ const Header = () => {
                     </li>
                   </NavLink>
                   <div
-                    className="py-1 px-2 hover:text-[#5f6FFF] "
+                    className="py-1 px-2 hover:text-blue-600 "
                     onClick={() => {
                       logout();
                       navigate('/');
@@ -210,7 +207,7 @@ const Header = () => {
               )}
               {!token && (
                 <div
-                  className="py-1 px-2 hover:text-[#5f6FFF] "
+                  className="py-1 px-2 hover:text-blue-600 "
                   onClick={() => {
                     navigate('/login');
                     setMobileMenu(false);

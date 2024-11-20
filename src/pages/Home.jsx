@@ -16,22 +16,28 @@ const Home = () => {
     <div className="mt-[100px]">
       <div className="bg-[url('https://res.cloudinary.com/jojo-cloud/image/upload/v1730273984/background12_cygtw4.jpg')] md:bg-[url('https://res.cloudinary.com/jojo-cloud/image/upload/v1730221708/background8_oz8dun.jpg')] relative bg-cover bg-no-repeat overflow-hidden w-full h-lvh">
         <div className="absolute bottom-0 left-0 text-white mb-10 md:mb-20 px-6 flex flex-col items-start gap-3">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl text-slate-900 font-manrope font-extrabold">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl text-indigo-950 font-extrabold">
             Delivering Quality Health Care
           </h1>
           <div className="flex gap-2">
-            <Link
-              to="/doctors"
-              className="bg-black text-white hover:bg-white hover:text-[#5f6fff] px-3 py-2 sm:px-8 sm:py-3 rounded"
+            <div
+              onClick={() => {
+                navigate('/contact');
+                scrollTo(0, 0);
+              }}
+              className="bg-black text-white hover:bg-white hover:text-blue-600 hover:scale-105 transition-all px-3 py-2 sm:px-8 sm:py-3 rounded cursor-pointer"
             >
-              Find a Doctor
-            </Link>
-            <Link
-              to="/all-doctors"
-              className="bg-[#5f6FFF] text-white hover:bg-white hover:text-[#5f6fff] px-3 py-2 sm:px-8 sm:py-3 rounded"
+              Contact Us
+            </div>
+            <div
+              onClick={() => {
+                user ? navigate('/all-doctors') : navigate('/login');
+                scrollTo(0, 0);
+              }}
+              className="bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:scale-105 transition-all px-3 py-2 sm:px-8 sm:py-3 rounded cursor-pointer"
             >
               Book an Appointment
-            </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -55,7 +61,7 @@ const Home = () => {
           </div>
           <Link
             to="/about"
-            className="bg-white text-[#5f6fff] text-xl border-[#5f6fff] border-2 hover:bg-[#5f6fff] hover:text-white px-3 py-2 sm:px-8 sm:py-3 rounded"
+            className="bg-white text-blue-600 text-xl border-blue-600 border-2 hover:bg-blue-600 hover:text-white hover:scale-90 transition-all px-3 py-2 sm:px-8 sm:py-3 rounded"
           >
             Why choose Jerou?
           </Link>
@@ -78,14 +84,17 @@ const Home = () => {
         </p>
         <div className="flex flex-wrap justify-center items-center">
           {specialityData.map((item, index) => (
-            <Link
-              to={`/doctors/${item.speciality}`}
+            <div
+              onClick={() => {
+                navigate(`/all-doctors/${item.speciality}`);
+                scrollTo(0, 0);
+              }}
               key={index}
               className="flex flex-col items-center text-xs cursor-pointer gap-2 p-4"
             >
               <img src={item.image} alt="profile icon" className="w-20" />
               <p>{item.speciality}</p>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -111,7 +120,7 @@ const Home = () => {
           onClick={
             user ? () => navigate('/all-doctors') : () => navigate('/login')
           }
-          className="bg-[#5f6FFF] text-white px-8 py-3 rounded-full font-light"
+          className="bg-blue-600 text-white px-8 py-3 rounded-full font-light"
         >
           Book Appointment
         </button>

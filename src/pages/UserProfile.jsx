@@ -61,14 +61,14 @@ const UserProfile = () => {
               <img
                 src={user?.image}
                 alt="profile pic"
-                className="w-36 rounded-full"
+                className="w-36 rounded shadow shadow-gray-400 p-2"
               />
-              <p className="font-medium text-3xl text-slate-800 mt-4">
-                {user.name}
-              </p>
             </div>
-            <div className="flex flex-col border-b-2 border-t-2 border-[#5f6FFF] p-12 rounded-xl gap-3 shadow-lg">
+            <div className="flex flex-col border-b-2 border-t-2 border-blue-600 p-12 rounded-xl gap-3 shadow-2xl">
               <div>
+                <p className="font-medium text-3xl text-slate-800 text-center mt-1">
+                  {user.name}
+                </p>
                 <p className="text-neutral-500 text-center underline mt-3">
                   CONTACT INFORMATION
                 </p>
@@ -101,7 +101,7 @@ const UserProfile = () => {
                 </div>
               </div>
               <button
-                className="bg-[#5f6FFF] text-white w-full py-2 rounded-md text-base"
+                className="bg-blue-600 text-white w-full py-2 rounded-md text-base"
                 onClick={() => setEditing(true)}
               >
                 Edit Profile
@@ -113,14 +113,14 @@ const UserProfile = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative mx-auto flex flex-col items-center justify-center h-full border-b-2 border-t-2  border-[#5f6FFF] rounded-xl gap-3 m-auto min-h-[70vh] max-w-[340px] sm:max-w-md w-full text-sm shadow-lg"
+            className="relative mx-auto flex flex-col items-center justify-center h-full border-b-2 border-t-2  border-blue-600 rounded-xl gap-3 m-auto min-h-[70vh] max-w-[340px] sm:max-w-md w-full text-sm shadow-lg"
           >
             <div className="p-4">
               <CircleX
                 className="absolute right-0 top-0 m-2 cursor-pointer size-4 md:size-5 text-red-500"
                 onClick={() => setEditing(false)}
               />
-              <h2 className="text-xl font-semibold mb-6 text-center text-[#5f6FFF] bg-clip-text">
+              <h2 className="text-xl font-semibold mb-6 text-center text-blue-600 bg-clip-text">
                 Update Your Profile
               </h2>
               <form onSubmit={handleSubmit}>
@@ -199,12 +199,13 @@ const UserProfile = () => {
                 <div className="grid grid-cols-[1fr_3fr] gap-4 mt-3 text-neutral-700">
                   <p className="font-medium">Gender:</p>
                   <select
-                    className="w-full pr-3 py-2 bg-slate-200 rounded border border-[#5f6FFF] focus:border-[#5f6FFF] focus:ring-2 focus:[#5f6FFF] text-black placeholder-slate-800 transition duration-200"
-                    value={user.gender}
+                    className="w-full pr-3 py-2 bg-slate-200 rounded border border-blue-600 focus:border-blue-600 focus:ring-2 focus:blue-600 text-black placeholder-slate-800 transition duration-200"
+                    value={user.gender ? user.gender : 'Male'}
                     onChange={(e) =>
                       setUser((prev) => ({ ...prev, gender: e.target.value }))
                     }
                   >
+                    <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
@@ -222,7 +223,7 @@ const UserProfile = () => {
                   />
                 </div>
 
-                <motion.button className="bg-[#5f6FFF] text-white w-full py-2 rounded-md text-base">
+                <motion.button className="bg-blue-600 text-white w-full py-2 rounded-md text-base">
                   {isLoading ? (
                     <Loader className="animate-spin mx-auto" size={24} />
                   ) : (

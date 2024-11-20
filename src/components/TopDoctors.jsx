@@ -60,7 +60,7 @@ const TopDoctors = () => {
           navigate('/all-doctors');
           scrollTo(0, 0);
         }}
-        className="md:absolute top-0 right-10 bg-gray-100 text-gray-600 px-2 md:px-12 py-1 md:py-3 text-sm md:text-base rounded-full hover:bg-gray-400 hover:text-white"
+        className="md:absolute top-0 right-10 bg-gray-100 text-blue-800 px-2 md:px-12 py-1 md:py-3 text-sm md:text-base rounded-full hover:bg-blue-600 hover:text-white hover:scale-90 transition-all"
       >
         See more
       </button>

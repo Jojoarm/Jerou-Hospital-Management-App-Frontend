@@ -32,10 +32,10 @@ function SignUp() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="mt-[150px] flex flex-col items-center justify-center h-full border-b-2 border-t-2 text-center border-[#5f6FFF] rounded-xl gap-3 m-auto min-h-[60vh] max-w-md w-full text-sm shadow-lg"
+      className="mt-[150px] flex flex-col items-center justify-center h-full border-b-2 border-t-2 text-center border-blue-600 rounded-xl gap-3 m-auto min-h-[60vh] max-w-md w-full text-sm shadow-lg"
     >
       <div className="p-4">
-        <h2 className="text-xl font-bold mb-6 text-center text-[#5f6FFF] text-transparent bg-clip-text">
+        <h2 className="text-xl font-bold mb-6 text-center text-blue-600 text-transparent bg-clip-text">
           Create Account
         </h2>
         <form onSubmit={handleSubmit}>
@@ -61,7 +61,7 @@ function SignUp() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <motion.button className="bg-[#5f6FFF] text-white w-full py-2 rounded-md text-base">
+          <motion.button className="bg-blue-600 text-white w-full py-2 rounded-md text-base">
             {isLoading ? (
               <Loader className="animate-spin mx-auto" size={24} />
             ) : (
@@ -71,7 +71,7 @@ function SignUp() {
           <p className="mt-2">
             Already have an account?{' '}
             <span
-              className="underline cursor-pointer text-[#5f6FFF]"
+              className="underline cursor-pointer text-blue-600"
               onClick={() => navigate('/login')}
             >
               Login

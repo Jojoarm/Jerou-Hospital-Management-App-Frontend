@@ -219,7 +219,7 @@ const Doctor = () => {
                       }}
                       className={`text-center py-1 px-2 md:px-5 min-w-16 rounded cursor-pointer ${
                         slotIndex === index
-                          ? 'bg-orange-500 text-white'
+                          ? 'bg-blue-600 text-white'
                           : 'border border-gray-200'
                       }`}
                     >
@@ -233,7 +233,7 @@ const Doctor = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 2.5 }}
-                  className="flex gap-3 flex-wrap items-center justify-center md:max-w-[700px] lg:max-w-[1000px] rounded-xl text-xs md:text-sm shadow-sm shadow-orange-300  p-4"
+                  className="flex gap-3 flex-wrap items-center justify-center md:max-w-[700px] lg:max-w-[1000px] rounded-xl text-xs md:text-sm shadow-sm shadow-blue-400  p-4"
                 >
                   {availableSlots.length &&
                     availableSlots[slotIndex].map((item, index) => (
@@ -245,7 +245,7 @@ const Doctor = () => {
                         }}
                         className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${
                           item.time === slotTime
-                            ? 'bg-orange-500 text-white'
+                            ? 'bg-blue-600 text-white'
                             : 'text-gray-400 border border-gray-300'
                         }`}
                       >
@@ -257,7 +257,7 @@ const Doctor = () => {
 
               <button
                 onClick={bookAppointment}
-                className="bg-orange-500 disabled:bg-orange-200 disabled:cursor-not-allowed text-white text-sm font-light px-14 py-3 rounded-full my-6"
+                className="bg-blue-600 disabled:bg-blue-200 disabled:cursor-not-allowed text-white text-sm font-light px-14 py-3 rounded-full my-6 hover:scale-95 transition-all"
                 disabled={!allowBooking}
               >
                 Book Appointment

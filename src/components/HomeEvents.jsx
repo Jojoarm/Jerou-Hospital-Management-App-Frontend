@@ -12,7 +12,7 @@ const HomeEvents = () => {
       <div className="flex justify-between items-center w-full">
         <h2 className="text-xl md:text-2xl font-semibold">Events</h2>
         <p
-          className="text-red-700 flex items-center gap-1 cursor-pointer hover:bg-red-700 hover:text-white p-2 rounded"
+          className="text-blue-600 flex items-center gap-1 cursor-pointer hover:bg-blue-600 hover:text-white hover:scale-90 transition-all p-2 rounded"
           onClick={() => {
             navigate('/events');
             scrollTo(0, 0);

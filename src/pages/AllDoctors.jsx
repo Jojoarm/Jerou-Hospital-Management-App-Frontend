@@ -1,6 +1,5 @@
 import { CircleX, Search } from 'lucide-react';
 import { specialityData } from '../assets/assets';
-import { motion } from 'framer-motion';
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
@@ -66,20 +65,20 @@ const AllDoctors = () => {
       <div className="flex flex-col w-full gap-3 items-center">
         <div className="relative w-[85%] lg:w-[70%]">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
-            <Search className="size-4 md:size-5 text-[#5f6FFF]" />
+            <Search className="size-4 md:size-5 text-blue-600" />
           </div>
           <input
             type="text"
             placeholder="Search by speciality or Doctor's name"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="w-full pl-8 md:pl-10 pr-3 py-3 bg-slate-200 rounded-xl border border-[#5f6FFF] focus:border-[#5f6FFF] focus:ring-2 focus:[#5f6FFF] text-black text-xs md:text-sm placeholder-slate-800 transition duration-200"
+            className="w-full pl-8 md:pl-10 pr-3 py-3 bg-slate-200 rounded-xl border border-blue-600 focus:border-blue-600 focus:ring-2 focus:blue-600 text-black text-xs md:text-sm placeholder-slate-800 transition duration-200"
           />
           <div
             className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
             onClick={() => setSearchInput('')}
           >
-            <CircleX className="size-3 md:size-4 text-[#5f6FFF] bg-slate-200" />
+            <CircleX className="size-3 md:size-4 text-blue-600 bg-slate-200" />
           </div>
         </div>
         <div className="flex flex-wrap w-full justify-center items-start gap-5">

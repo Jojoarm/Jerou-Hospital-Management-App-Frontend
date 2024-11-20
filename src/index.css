@@ -76,7 +76,7 @@
 }
 
 .active li {
-  @apply text-[#5f6FFF];
+  @apply text-blue-600;
 }
 
 /* width */
